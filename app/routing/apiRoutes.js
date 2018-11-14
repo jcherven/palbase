@@ -9,7 +9,8 @@ const path = require('path');
 
 module.exports = function(app) {
     app.get('/api/friends', function(req, res) {
-        console.log('API endpoint hit" http get');
+        console.log('API endpoint hit: http get');
+        res.sendFile(path.join(__dirname, '../data/pals.json'))
 
     });
 

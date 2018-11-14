@@ -1,0 +1,37 @@
+{
+    "pals": [
+        {
+            "name": "9s (YoRHa No. 9 Type S)",
+            "photo": "https://aitaikuji.com/content/images/thumbs/0011537_nier-automata-square-enix-9s-chibi-small-plush.jpeg",
+            "scores": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "name": "2b (YoRHa No. 2 Type B)",
+            "photo": "https://aitaikuji.com/content/images/thumbs/0011536_nier-automata-square-enix-2b-chibi-small-plush-re-release.png",
+            "scores": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        }
+
+    ]
+}
