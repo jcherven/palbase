@@ -8,100 +8,109 @@
 </head>
 <body>
     <div class="container">
-        
         <h1>Pal survey</h1>
-        <h3>Answer a few questions as honestly as you can.</h3>
         <hr>
-
+        <div class="form-group">
+            <label for="name" class="h5">Name</label>
+            <input type="text" class="form-control" id="name-input">
+        </div>
+        <div class="form-group">
+            <label for="image-link" class="h5">Paste link to photo here</label>
+            <input type="text" class="form-control" id="image-link">
+        </div>
+        <h4>Answer a few questions as honestly as you can:</h>
+        <hr>
         <div class="container">
             <div id="survey-display"></div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
         <hr>
         </div>
         <!-- Modal definition -->
         <div class="modal" id="#pal-display-modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-
                     <div class="modal-header">
                         <h5 class="modal-title">Your pal is:</h5>
                         <button type="button" class="close" data-dismiss="modal">
                             <span>X</span>
                         </button>
                     </div>
-
                     <div class="modal-body">
                         <h5 id="pal-name-display"></h5>
                         <img id="pal-photo-display" src="">
                     </div>
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
-
                 </div>
             </div>
         </div> <!-- End modal definition -->
-
         <footer class="footer">
             <p><a href="/">Home</a></p>
         </footer>
-
     </div> <!-- End container --> 
     <!-- Document bottom -->
-
-
     <script type="text/javascript">
 
         $(document).ready();
 
         const questionBank = [
             "Your mind is always buzzing with unexplored ideas and plans.",
-            "Generally speaking, you rely more on your experience than your imagination.",
+            "You rely more on your experience than your imagination.",
             "You find it easy to stay relaxed and focused even when there is some pressure.",
             "You rarely do something just out of sheer curiosity.",
-            "People can rarely upset you.",
-            "It is often difficult for you to relate to other people’s feelings.",
+            "It takes a lot for someone to get on your nerves.",
+            "It's difficult for you to relate to other people’s feelings.",
             "In a discussion, truth should be more important than people’s sensitivities.",
-            "You rarely get carried away by fantasies and ideas.",
+            "You get carried away by fantasies and ideas.",
             "You think that everyone’s views should be respected regardless of whether they are supported by facts or not.",
             "You feel more energetic after spending time with a group of people."
         ];
 
         var $surveyDisplay = $('#survey-display');
         $(document).ready(function() { 
+            /* Dynamically render survey questions */
             questionBank.forEach(function(question, index){
                 $surveyDisplay.append(`                
-                <form>
-                    <div class="form-group form-check">
-                        <label for="question-${index}" class="d-block h5">${question}</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="1">
-                            <label class="form-check-label" for="question-${index}">Not at all</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="2">
-                            <label class="form-check-label" for="question-${index}">Rarely</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="2">
-                            <label class="form-check-label" for="question-${index}">It depends</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="2">
-                            <label class="form-check-label" for="question-${index}">Usually</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="2">
-                            <label class="form-check-label" for="question-${index}">All the time</label>
-                        </div>
-                    </div>
-                </form>
-                <hr>
+                    <label for="question-${index}" class="h5">${question}</label>
+                    <select class="form-control id="question-${index}">
+                        <option value="0">Choose an answer</option>  
+                        <option value="1">Not at all</option>
+                        <option value="2">Rarely</option>
+                        <option value="3">It depends</option>
+                        <option value="4">Usually</option>
+                        <option value="5">All the time</option>
+                    </select>
+                    <hr>
                 `
                 );
             });
 
+            /* Handle submit click */
+            var $submitButton = $('#submit-button');
+            var $nameInput = $('#name-input').val().trim();
+            var $imageLink = $('#image-link').val().trim();
+            var scoreArray = [];
+
+            $submitButton.on('click', function(){
+                var palCard = {
+                    name: $nameInput,
+                    image: $imageLink,
+                    scores: [
+                        $('#question-0').val(),
+                        $('#question-1').val(),
+                        $('#question-2').val(),
+                        $('#question-3').val(),
+                        $('#question-4').val(),
+                        $('#question-5').val(),
+                        $('#question-6').val(),
+                        $('#question-7').val(),
+                        $('#question-8').val(),
+                        $('#question-9').val(),
+                    ] 
+                };
+
+            });
         });
     </script>
 
